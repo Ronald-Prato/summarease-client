@@ -1,0 +1,78 @@
+.landingContainer {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.landingLayout {
+  height: 100vh;
+}
+
+.textSide {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  font-family: var(--secondary-font);
+  font-style: normal;
+  font-size: 25px;
+  line-height: 36px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.astroImage {
+  width: 350px;
+  height: auto;
+  margin-right: 50px;
+}
+
+.textSide p {
+  margin-bottom: 10px;
+}
+
+.textSide strong {
+  color: var(--white);
+  font-size: 30px;
+  background-color: var(--black);
+  padding: 3px;
+}
+
+@media (max-width: 726px) {
+  .landingContainer {
+    margin-top: 60px;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  .imageSide {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .astroImage {
+    margin-top: 10px;
+    width: 350px;
+    height: auto;
+    transform: translateY(150px);
+  }
+
+  .textSide {
+    width: fit-content;
+    height: fit-content;
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+    line-height: 15pt;
+  }
+
+  .textSide p {
+    margin-bottom: 40px;
+  }
+  .textSide strong {
+    font-size: 20px;
+  }
+}

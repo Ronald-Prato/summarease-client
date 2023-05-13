@@ -1,4 +1,5 @@
 import { Header } from "@/components";
+import styles from "./landing.module.css";
 
 export default function LandingLayout({
   children,
@@ -6,8 +7,8 @@ export default function LandingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <Header title="" />
+    <div className={styles.landingLayout}>
+      <Header />
       {children}
     </div>
   );

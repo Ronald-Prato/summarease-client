@@ -1,7 +1,10 @@
-import { FC } from "react";
-import { HeaderProps } from "./contracts";
 import styles from "./Header.module.css";
 
-export const Header: FC<HeaderProps> = () => {
-  return <header className={styles.headerContainer}></header>;
+export const Header = () => {
+  return (
+    <nav className={styles.headerContainer}>
+      <h1 className={styles.logo}>SummarEase</h1>
+      <h2 className={styles.login}>Login</h2>
+    </nav>
+  );
 };
