@@ -7,7 +7,8 @@
 }
 
 .landingLayout {
-  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 .textSide {
@@ -45,6 +46,7 @@
     flex-direction: column-reverse;
     overflow: hidden;
     align-items: center;
+    justify-content: center;
   }
 
   .imageSide {
@@ -57,7 +59,7 @@
     margin-top: 10px;
     width: 350px;
     height: auto;
-    transform: translateY(150px);
+    transform: translateY(70px);
   }
 
   .textSide {
@@ -67,6 +69,7 @@
     padding: 15px;
     text-align: center;
     line-height: 15pt;
+    align-items: center;
   }
 
   .textSide p {
