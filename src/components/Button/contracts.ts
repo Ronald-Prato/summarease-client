@@ -1,5 +1,5 @@
 export interface ButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void | undefined;
   disabled?: boolean;
 }

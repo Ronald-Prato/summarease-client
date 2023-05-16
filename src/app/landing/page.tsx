@@ -2,6 +2,7 @@ import styles from "./landing.module.css";
 import Astro from "../../assets/astronaut1.png";
 import Image from "next/image";
 import { Button } from "@/components";
+
 // exportar como default
 export default function Landing() {
   return (
