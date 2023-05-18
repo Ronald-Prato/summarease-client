@@ -1,1 +1,1 @@
-export const NO_FILE_SELECTED_COPY = "No file selected yet"
+export const NO_FILE_SELECTED_COPY = "Drag & Drop Enabled";

@@ -1,0 +1,23 @@
+.historyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.historyBox {
+  width: 280px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(95, 95, 95, 0.1);
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.historyContainer h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}

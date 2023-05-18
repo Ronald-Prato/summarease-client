@@ -1,1 +1,7 @@
-export const LoadingSpinner = () => {};
+export const LoadingSpinner = () => {
+  return (
+    <div>
+      <p>Loading</p>
+    </div>
+  );
+};

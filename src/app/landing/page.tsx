@@ -1,7 +1,11 @@
-import styles from "./landing.module.css";
-import Astro from "../../assets/astronaut1.png";
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components";
+
+import styles from "./landing.module.css";
+import Astro from "../../assets/astronaut1.png";
 
 // exportar como default
 export default function Landing() {
@@ -18,7 +22,9 @@ export default function Landing() {
           </p>
           <b> links de referencia</b> usando el poder de la <b>IA</b>.
         </p>
-        <Button>COMIENZA</Button>
+        <Link href="/upload">
+          <Button>COMIENZA</Button>
+        </Link>
       </div>
     </div>
   );
