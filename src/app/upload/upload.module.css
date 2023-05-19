@@ -48,14 +48,14 @@
   background-color: rgba(226, 226, 226, 0.719);
 }
 
-.summarySide {
+.outputContainer {
   flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.summary {
+.output {
   width: 450px;
   height: 93px;
   font-size: 30px;

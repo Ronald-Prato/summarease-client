@@ -1,0 +1,15 @@
+.outputContainer {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.output {
+  width: 450px;
+  height: 93px;
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--gray);
+}

@@ -7,6 +7,7 @@ import { NO_FILE_SELECTED_COPY } from "@/constants";
 import DownloadIcon from "../../assets/downloadIcon.svg";
 import Image from "next/image";
 import { LoadingSpinner } from "@/components";
+import CHECK from "../../assets/checkIcon.svg";
 
 export const AudioUploader = ({
   handleResponse,
@@ -87,14 +88,12 @@ export const AudioUploader = ({
         onDragEnd={handleDragEnd}
         onDragLeave={handleDragLeave}
       >
-        {isLoading ? (
-          <LoadingSpinner /> // Render the LoadingSpinner component if isLoading is true
-        ) : (
-          <>
+        {!selectedFile ? (
+          <div>
+            {" "}
             <Image src={DownloadIcon} alt="Download Icon" />
             <h3>Upload your Audio</h3>
             <h5>(Max 10 MB)</h5>
-
             <input
               id="file-upload-input"
               type="file"
@@ -102,9 +101,14 @@ export const AudioUploader = ({
               onChange={handleFileSelect}
               className={styles.hidden}
             />
-            <p>{filename}</p>
-          </>
+          </div>
+        ) : (
+          <div>
+            <Image src={CHECK} alt="Check icon" />
+          </div>
         )}
+
+        <p>{filename}</p>
       </div>
     </label>
   );

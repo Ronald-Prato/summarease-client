@@ -3,11 +3,14 @@
 import React from "react";
 import { useState } from "react";
 import styles from "./upload.module.css";
-import { AudioUploader } from "@/components";
-import { History } from "@/components/History";
+import { AudioUploader, History, Output } from "@/components";
 
 export default function Upload() {
   const [response, setResponse] = useState("");
+  const showOutput = response ? true : false;
+  const resetOutput = () => {
+    setResponse("");
+  };
 
   return (
     <div className={styles.uploadContainer}>
@@ -22,12 +25,15 @@ export default function Upload() {
         <hr className={styles.line} />
         <History />
       </div>
-
-      <div className={styles.summarySide}>
-        <div className={styles.summary}>
-          <p>Upload an audio to get your summary</p>
+      {showOutput ? (
+        <Output response={response} />
+      ) : (
+        <div className={styles.outputContainer}>
+          <div className={styles.output}>
+            Upload an audio to get your summary.
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
