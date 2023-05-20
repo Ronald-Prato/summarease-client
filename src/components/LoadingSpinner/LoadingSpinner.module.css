@@ -1,17 +1,17 @@
 .ldsEllipsis {
-  display: inline-block;
-  position: relative;
   width: 80px;
   height: 40px;
-  transform: scale(0.7);
+  position: relative;
+  transform: scale(0.8);
+  display: inline-block;
 }
 .ldsEllipsis div {
-  position: absolute;
   top: 15px;
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #fff;
+  position: absolute;
+  background: var(--spinner-background);
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .ldsEllipsis div:nth-child(1) {

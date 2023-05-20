@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { ButtonProps } from "./contracts";
 import styles from "./Button.module.css";
+import { ButtonProps } from "./contracts";
 
 export const Button: FC<ButtonProps> = ({ children, onClick, disabled }) => {
   return (

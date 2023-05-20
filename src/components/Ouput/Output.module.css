@@ -2,6 +2,7 @@
   flex-grow: 1;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -12,4 +13,13 @@
   font-weight: 400;
   text-align: center;
   color: var(--gray);
+}
+
+.outputContainer h3 {
+  margin: 20px 0;
+  color: var(--gray);
+}
+
+.outputContainer h4 {
+  color: var(--gray-light);
 }

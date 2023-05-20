@@ -45,8 +45,8 @@ export default function Upload() {
         <hr className={styles.line} />
         <History />
       </div>
-      {showOutput ? (
-        <Output response={response} />
+      {!showOutput ? (
+        <Output response={response} isLoading={isLoading} />
       ) : (
         <div className={styles.outputContainer}>
           <div className={styles.output}>

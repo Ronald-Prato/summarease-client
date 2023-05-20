@@ -2,24 +2,25 @@
 
 import React from "react";
 import Image from "next/image";
-import { useState } from "react";
-import { Button, LoadingSpinner } from "@/components";
-import CheckIcon from "../../assets/checkIcon.svg";
+import { useState, FC } from "react";
 import styles from "./AudioUploader.module.css";
+import CheckIcon from "../../assets/checkIcon.svg";
 import { NO_FILE_SELECTED_COPY } from "@/constants";
+import { Button, LoadingSpinner } from "@/components";
 import DownloadIcon from "../../assets/downloadIcon.svg";
 
-export const AudioUploader = ({
-  handleUploadAudio,
-  isLoading,
-}: {
+type UploaderProps = {
   handleUploadAudio: (formData: FormData) => void;
   isLoading: boolean;
-}) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+};
 
-  const [filename, setFilename] = useState(NO_FILE_SELECTED_COPY);
+export const AudioUploader: FC<UploaderProps> = ({
+  handleUploadAudio,
+  isLoading,
+}) => {
   const [isDragging, setIsDragging] = useState(false); // Add state for dragging
+  const [filename, setFilename] = useState(NO_FILE_SELECTED_COPY);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   function handleFileSelect(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files ? event.target.files[0] : null;
@@ -68,7 +69,9 @@ export const AudioUploader = ({
       <div
         className={`${styles.dropArea} ${
           isDragging ? styles.dragging : styles.notDragging
-        }`} // Add class based on dragging state
+        }
+        ${!selectedFile ? styles.withoutButton : ""}
+        `} // Add class based on dragging state
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}
@@ -99,7 +102,7 @@ export const AudioUploader = ({
             <p>{filename}</p>
             <h3>Uploaded</h3>
             <Button onClick={handleUpload} disabled={isLoading}>
-              {!isLoading ? "Summarize" : <LoadingSpinner />}
+              {!isLoading ? "Summarize" : <LoadingSpinner color="white" />}
             </Button>
           </div>
         )}

@@ -1,27 +1,25 @@
 .headerContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 700;
   font-size: 36px;
+  font-weight: 700;
   line-height: 52px;
+  font-style: normal;
+  font-family: "Jost";
 }
 
 .login {
   /* Login */
-
-  font-family: "Jost";
-  font-style: normal;
-  font-weight: 700;
   font-size: 24px;
+  font-weight: 700;
   line-height: 35px;
-  /* identical to box height */
+  font-style: normal;
+  font-family: "Jost";
 }
 
 @media (max-width: 726px) {
