@@ -10,9 +10,9 @@ export const Output: FC<OutputProps> = ({ response }) => {
     <>
       <div className={styles.outputContainer}>
         {!response ? (
-          "Esperando Resumen"
+          <div className={styles.output}>"Esperando Resumen"</div>
         ) : (
-          <div dangerouslySetInnerHTML={{ __html: String(response) }} />
+          <div dangerouslySetInnerHTML={{ __html: response }} />
         )}
       </div>
     </>

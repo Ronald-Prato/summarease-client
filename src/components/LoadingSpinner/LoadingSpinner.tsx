@@ -1,7 +1,12 @@
+import styles from "./LoadingSpinner.module.css";
+
 export const LoadingSpinner = () => {
   return (
-    <div>
-      <p>Loading</p>
+    <div className={styles.ldsEllipsis}>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   );
 };

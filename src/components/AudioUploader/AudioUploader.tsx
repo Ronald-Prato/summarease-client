@@ -1,21 +1,23 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { useState } from "react";
+import { Button, LoadingSpinner } from "@/components";
+import CheckIcon from "../../assets/checkIcon.svg";
 import styles from "./AudioUploader.module.css";
 import { NO_FILE_SELECTED_COPY } from "@/constants";
 import DownloadIcon from "../../assets/downloadIcon.svg";
-import Image from "next/image";
-import { LoadingSpinner } from "@/components";
-import CHECK from "../../assets/checkIcon.svg";
 
 export const AudioUploader = ({
-  handleResponse,
+  handleUploadAudio,
+  isLoading,
 }: {
-  handleResponse: (response: string) => void;
+  handleUploadAudio: (formData: FormData) => void;
+  isLoading: boolean;
 }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+
   const [filename, setFilename] = useState(NO_FILE_SELECTED_COPY);
   const [isDragging, setIsDragging] = useState(false); // Add state for dragging
 
@@ -27,22 +29,11 @@ export const AudioUploader = ({
 
   function handleUpload() {
     if (!selectedFile) return;
-    setIsLoading(true);
     const formData = new FormData();
     formData.append("audio", selectedFile);
-
-    fetch("http://173.255.198.22:9000/api/upload-audio", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => handleResponse(data.response))
-      .catch((error) => console.error(error))
-      .finally(() => setIsLoading(false));
+    handleUploadAudio(formData);
   }
-
+  // HANDLEDRAG FUNCTIONS
   function handleDrop(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
@@ -50,25 +41,21 @@ export const AudioUploader = ({
     setFilename(file ? file.name : NO_FILE_SELECTED_COPY);
     setIsDragging(false); // Reset dragging state
   }
-
   function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     event.dataTransfer.dropEffect = "copy";
     setIsDragging(true); // Set dragging state
   }
-
   function handleDragLeave(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     setIsDragging(false);
   }
-
   function handleDragStart(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     event.stopPropagation();
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.dropEffect = "move";
   }
-
   function handleDragEnd(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     event.stopPropagation();
@@ -89,9 +76,12 @@ export const AudioUploader = ({
         onDragLeave={handleDragLeave}
       >
         {!selectedFile ? (
-          <div>
-            {" "}
-            <Image src={DownloadIcon} alt="Download Icon" />
+          <div className={styles.uploaderContainer}>
+            <Image
+              src={DownloadIcon}
+              alt="Download Icon"
+              className={styles.icon}
+            />
             <h3>Upload your Audio</h3>
             <h5>(Max 10 MB)</h5>
             <input
@@ -101,14 +91,18 @@ export const AudioUploader = ({
               onChange={handleFileSelect}
               className={styles.hidden}
             />
+            <p>{filename}</p>
           </div>
         ) : (
-          <div>
-            <Image src={CHECK} alt="Check icon" />
+          <div className={styles.uploaderContainer}>
+            <Image src={CheckIcon} alt="Check icon" className={styles.icon} />
+            <p>{filename}</p>
+            <h3>Uploaded</h3>
+            <Button onClick={handleUpload} disabled={isLoading}>
+              {!isLoading ? "Summarize" : <LoadingSpinner />}
+            </Button>
           </div>
         )}
-
-        <p>{filename}</p>
       </div>
     </label>
   );

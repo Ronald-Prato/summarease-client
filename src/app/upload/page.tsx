@@ -8,8 +8,29 @@ import { AudioUploader, History, Output } from "@/components";
 export default function Upload() {
   const [response, setResponse] = useState("");
   const showOutput = response ? true : false;
+  const [isLoading, setIsLoading] = useState(false);
   const resetOutput = () => {
     setResponse("");
+  };
+
+  const handleUploadAudio = async (formData: FormData) => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        "http://173.255.198.22:9000/api/upload-audio",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      setResponse(data);
+    } catch (err) {
+      console.log("Hubo un error D: ", err);
+    }
+
+    setIsLoading(false);
   };
 
   return (
@@ -18,9 +39,8 @@ export default function Upload() {
         {" "}
         <h1 className={styles.logo}>SummarEase</h1>
         <AudioUploader
-          handleResponse={(res) => {
-            setResponse(res);
-          }}
+          handleUploadAudio={handleUploadAudio}
+          isLoading={isLoading}
         />
         <hr className={styles.line} />
         <History />
