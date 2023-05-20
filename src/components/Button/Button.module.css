@@ -2,11 +2,14 @@
   display: flex;
   font-size: 20px;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 5px 15px;
   font-weight: 600;
   width: fit-content;
+  min-width: 124px;
   border-radius: 8px;
   color: var(--white);
+  align-items: center;
+  justify-content: center;
   transition: var(--transition);
   background-color: var(--black);
   font-family: var(--primary-font);
