@@ -1,5 +1,7 @@
+"use client";
+
 import styles from "./Output.module.css";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 type OutputProps = {
@@ -8,6 +10,10 @@ type OutputProps = {
 };
 
 export const Output: FC<OutputProps> = ({ response, isLoading }) => {
+  useEffect(() => {
+    console.log("IS LOADING STATE: ", isLoading);
+  }, [isLoading]);
+
   return (
     <>
       <div className={styles.outputContainer}>
@@ -21,7 +27,10 @@ export const Output: FC<OutputProps> = ({ response, isLoading }) => {
         ) : !response ? (
           <div className={styles.output}>Waiting Audio to Summarize</div>
         ) : (
-          <div dangerouslySetInnerHTML={{ __html: response }} />
+          <div
+            className={styles.summary}
+            dangerouslySetInnerHTML={{ __html: response }}
+          />
         )}
       </div>
     </>

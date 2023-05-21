@@ -1,31 +1,29 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./upload.module.css";
 import { AudioUploader, History, Output } from "@/components";
 
 export default function Upload() {
   const [response, setResponse] = useState("");
-  const showOutput = response ? true : false;
   const [isLoading, setIsLoading] = useState(false);
+  const [showOutput, setShowOutput] = useState(false);
   const resetOutput = () => {
     setResponse("");
   };
 
   const handleUploadAudio = async (formData: FormData) => {
+    setShowOutput(true);
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        "http://173.255.198.22:9000/api/upload-audio",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/upload-audio", {
+        method: "POST",
+        body: formData,
+      });
       const data = await response.json();
-      setResponse(data);
+      console.log("data", data.summary);
+      setResponse(data.summary);
     } catch (err) {
       console.log("Hubo un error D: ", err);
     }
@@ -45,7 +43,8 @@ export default function Upload() {
         <hr className={styles.line} />
         <History />
       </div>
-      {!showOutput ? (
+
+      {showOutput ? (
         <Output response={response} isLoading={isLoading} />
       ) : (
         <div className={styles.outputContainer}>
