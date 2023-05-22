@@ -12,11 +12,15 @@ import DownloadIcon from "../../assets/downloadIcon.svg";
 type UploaderProps = {
   handleUploadAudio: (formData: FormData) => void;
   isLoading: boolean;
+  resetOutput: () => void;
+  response: string;
 };
 
 export const AudioUploader: FC<UploaderProps> = ({
   handleUploadAudio,
   isLoading,
+  response,
+  resetOutput,
 }) => {
   const [isDragging, setIsDragging] = useState(false); // Add state for dragging
   const [filename, setFilename] = useState(NO_FILE_SELECTED_COPY);
@@ -32,7 +36,13 @@ export const AudioUploader: FC<UploaderProps> = ({
     if (!selectedFile) return;
     const formData = new FormData();
     formData.append("audio", selectedFile);
-    handleUploadAudio(formData);
+    if (response) {
+      resetOutput();
+      setSelectedFile(null);
+      setFilename(NO_FILE_SELECTED_COPY);
+    } else {
+      handleUploadAudio(formData);
+    }
   }
   // HANDLEDRAG FUNCTIONS
   function handleDrop(event: React.DragEvent<HTMLDivElement>) {
@@ -102,7 +112,15 @@ export const AudioUploader: FC<UploaderProps> = ({
             <p>{filename}</p>
             <h3>Uploaded</h3>
             <Button onClick={handleUpload} disabled={isLoading}>
-              {!isLoading ? "Summarize" : <LoadingSpinner color="white" />}
+              {!isLoading ? (
+                response ? (
+                  "Make new summary"
+                ) : (
+                  "Summarize"
+                )
+              ) : (
+                <LoadingSpinner color="white" />
+              )}
             </Button>
           </div>
         )}

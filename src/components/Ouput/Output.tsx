@@ -10,10 +10,6 @@ type OutputProps = {
 };
 
 export const Output: FC<OutputProps> = ({ response, isLoading }) => {
-  useEffect(() => {
-    console.log("IS LOADING STATE: ", isLoading);
-  }, [isLoading]);
-
   return (
     <>
       <div className={styles.outputContainer}>

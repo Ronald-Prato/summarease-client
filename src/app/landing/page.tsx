@@ -17,8 +17,8 @@ export default function Landing() {
       <div className={styles.textSide}>
         <p>
           {" "}
-          Obtén la <b> transcripción </b> con <b>puntos clave</b> y Crea{" "}
-          <strong>resúmenes</strong> de tus <b>audios</b>.
+          Obtén la <b> transcripción </b> con <b>puntos clave</b> y crea{" "}
+          <strong>resúmenes S </strong> de tus <b>audios</b>.
           <b> links de referencia</b> usando el poder de la <b>IA</b>.
         </p>
         <Link href="/upload">

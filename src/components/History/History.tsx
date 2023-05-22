@@ -5,7 +5,7 @@ export const History = () => {
     <>
       <section className={styles.historyContainer}>
         <h2>History</h2>
-        <div className={styles.historyBox}>No summaries yet</div>
+        <div className={styles.historyBox}>Feature coming soon</div>
       </section>
     </>
   );

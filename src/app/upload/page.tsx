@@ -22,7 +22,6 @@ export default function Upload() {
         body: formData,
       });
       const data = await response.json();
-      console.log("data", data.summary);
       setResponse(data.summary);
     } catch (err) {
       console.log("Hubo un error D: ", err);
@@ -39,6 +38,8 @@ export default function Upload() {
         <AudioUploader
           handleUploadAudio={handleUploadAudio}
           isLoading={isLoading}
+          resetOutput={resetOutput}
+          response={response}
         />
         <hr className={styles.line} />
         <History />

@@ -24,8 +24,23 @@
   color: var(--gray-light);
 }
 
+.summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+  padding: 50px;
+}
+
+.summary h2 {
+  text-align: center;
+  margin: 20px;
+}
+
 .summary ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  list-style: inside;
+}
+
+.summary li {
+  margin-bottom: 5px;
 }
