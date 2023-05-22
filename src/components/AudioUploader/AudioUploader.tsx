@@ -11,8 +11,8 @@ import DownloadIcon from "../../assets/downloadIcon.svg";
 
 type UploaderProps = {
   handleUploadAudio: (formData: FormData) => void;
-  isLoading: boolean;
   resetOutput: () => void;
+  isLoading: boolean;
   response: string;
 };
 
@@ -22,7 +22,7 @@ export const AudioUploader: FC<UploaderProps> = ({
   response,
   resetOutput,
 }) => {
-  const [isDragging, setIsDragging] = useState(false); // Add state for dragging
+  const [isDragging, setIsDragging] = useState(false);
   const [filename, setFilename] = useState(NO_FILE_SELECTED_COPY);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
