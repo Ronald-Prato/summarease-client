@@ -40,6 +40,10 @@
   padding: 3px;
 }
 
+.link {
+  text-decoration: none;
+}
+
 @media (max-width: 726px) {
   .landingContainer {
     margin-top: 60px;
