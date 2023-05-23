@@ -1,51 +1,25 @@
-.textContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.textsWrapper {
-  margin-top: 20px;
-  display: flex;
-  min-width: 500px;
-  position: relative;
-  color: var(--gray-light);
-  justify-content: center; /* Add this line */
-}
-
-.fadeIn {
+.fadeInOut {
   opacity: 0;
-  position: absolute;
-  left: 25%; /* Change this line */
-  transform: translateX(-50%); /* Add this line */
-  animation: fadeIn 0.5s ease-in forwards;
+  transform: translateX(-100%);
+  animation: fadeInOut 4s ease-in-out forwards;
+  color: var(--gray-light);
+  margin-top: 40px;
 }
 
-.fadeOut {
-  opacity: 1;
-  position: absolute;
-  left: 50%; /* Change this line */
-  transform: translateX(-50%); /* Add this line */
-  animation: fadeOut 0.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
+@keyframes fadeInOut {
+  0% {
     opacity: 0;
     transform: translateX(-100%);
   }
-  to {
+  30% {
     opacity: 1;
     transform: translateX(0);
   }
-}
-
-@keyframes fadeOut {
-  from {
+  70% {
     opacity: 1;
     transform: translateX(0);
   }
-  to {
+  100% {
     opacity: 0;
     transform: translateX(100%);
   }

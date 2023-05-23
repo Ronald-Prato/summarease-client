@@ -14,7 +14,7 @@ export const LoadingText: FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 2000); // Change the duration of each text here (in milliseconds)
+    }, 4000);
 
     return () => {
       clearInterval(interval);
@@ -23,16 +23,9 @@ export const LoadingText: FC = () => {
 
   return (
     <div className={styles.textContainer}>
-      <div className={styles.textsWrapper}>
-        {texts.map((text, index) => (
-          <h2
-            key={index}
-            className={index === currentIndex ? styles.fadeIn : styles.fadeOut}
-          >
-            {text}
-          </h2>
-        ))}
-      </div>
+      <h2 key={texts[currentIndex]} className={styles.fadeInOut}>
+        {texts[currentIndex]}
+      </h2>
     </div>
   );
 };
