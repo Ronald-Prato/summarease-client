@@ -1,0 +1,52 @@
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textsWrapper {
+  margin-top: 20px;
+  display: flex;
+  min-width: 500px;
+  position: relative;
+  color: var(--gray-light);
+  justify-content: center; /* Add this line */
+}
+
+.fadeIn {
+  opacity: 0;
+  position: absolute;
+  left: 25%; /* Change this line */
+  transform: translateX(-50%); /* Add this line */
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.fadeOut {
+  opacity: 1;
+  position: absolute;
+  left: 50%; /* Change this line */
+  transform: translateX(-50%); /* Add this line */
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

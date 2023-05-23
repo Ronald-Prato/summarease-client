@@ -1,8 +1,9 @@
 "use client";
 
 import styles from "./Output.module.css";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { LoadingSpinner } from "../LoadingSpinner";
+import LoadingText from "../LoadingText/LoadingText";
 
 type OutputProps = {
   response: string;
@@ -16,9 +17,7 @@ export const Output: FC<OutputProps> = ({ response, isLoading }) => {
         {isLoading ? (
           <>
             <LoadingSpinner color="black" />
-            <h2>Transcribing</h2>
-            <h3>Generating Summary</h3>
-            <h4>Generating Bullet Points</h4>
+            <LoadingText />
           </>
         ) : !response ? (
           <div className={styles.output}>Waiting Audio to Summarize</div>
