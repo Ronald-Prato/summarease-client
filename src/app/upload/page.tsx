@@ -6,8 +6,8 @@ import { AudioUploader, History, Output } from "@/components";
 
 export default function Upload() {
   const [response, setResponse] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [showOutput, setShowOutput] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showOutput, setShowOutput] = useState(false);
   const resetOutput = () => {
     setResponse("");
   };
