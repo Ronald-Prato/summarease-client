@@ -1,15 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./upload.module.css";
 import { AudioUploader, History, Output } from "@/components";
+import { useSocketIO } from "@/hooks/useSocketIO";
+
+type StatesType = 0 | 1;
 
 export default function Upload() {
+  const { socket } = useSocketIO();
+
+  const [socketId, setSocketId] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
+  const [currentState, setCurrentState] = useState<StatesType>(0);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("socket-id", (newSocketId) => {
+        console.log("Your socket id is ", newSocketId);
+        setSocketId(newSocketId);
+      });
+
+      socket.on("status-changed", (newStatus: StatesType) => {
+        setCurrentState(newStatus);
+      });
+    }
+  }, [socket]);
+
   const resetOutput = () => {
     setResponse("");
+    setCurrentState(0);
   };
 
   const handleUploadAudio = async (formData: FormData) => {
@@ -38,6 +60,7 @@ export default function Upload() {
         <AudioUploader
           handleUploadAudio={handleUploadAudio}
           isLoading={isLoading}
+          socketId={socketId}
           resetOutput={resetOutput}
           response={response}
         />
@@ -46,7 +69,11 @@ export default function Upload() {
       </div>
 
       {showOutput ? (
-        <Output response={response} isLoading={isLoading} />
+        <Output
+          currentStep={currentState}
+          response={response}
+          isLoading={isLoading}
+        />
       ) : (
         <div className={styles.outputContainer}>
           <div className={styles.output}>

@@ -31,11 +31,12 @@
   justify-content: center;
   max-width: 600px;
   padding: 50px;
+  text-align: justify;
 }
 
 .summary h2 {
-  text-align: center;
-  margin: 20px;
+  text-align: justify;
+  margin-top: 20px;
 }
 
 .summary ul {

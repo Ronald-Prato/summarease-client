@@ -1,23 +1,30 @@
 "use client";
 
 import styles from "./Output.module.css";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { LoadingSpinner } from "../LoadingSpinner";
 import LoadingText from "../LoadingText/LoadingText";
+import { useSocketIO } from "@/hooks/useSocketIO";
+import { Socket } from "socket.io-client";
 
 type OutputProps = {
+  currentStep: 0 | 1;
   response: string;
   isLoading: boolean;
 };
 
-export const Output: FC<OutputProps> = ({ response, isLoading }) => {
+export const Output: FC<OutputProps> = ({
+  response,
+  isLoading,
+  currentStep,
+}) => {
   return (
     <>
       <div className={styles.outputContainer}>
         {isLoading ? (
           <>
             <LoadingSpinner color="black" />
-            <LoadingText />
+            <LoadingText currentIndex={currentStep} />
           </>
         ) : !response ? (
           <div className={styles.output}>Waiting Audio to Summarize</div>

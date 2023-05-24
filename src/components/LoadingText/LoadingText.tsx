@@ -1,25 +1,8 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import styles from "./LoadingText.module.css";
 
-export const LoadingText: FC = () => {
-  const texts = [
-    "Analizando Audio",
-    "Transcribiendo Audio",
-    "Generando Resumen",
-    "Creando Bullet Points",
-    "Buscando Links de Referencia",
-  ];
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 4000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [texts.length]);
+export const LoadingText: FC<{ currentIndex: number }> = ({ currentIndex }) => {
+  const texts = ["Transcribiendo audio", "Generando Resumen"];
 
   return (
     <div className={styles.textContainer}>

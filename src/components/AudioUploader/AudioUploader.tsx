@@ -10,6 +10,7 @@ import { Button, LoadingSpinner } from "@/components";
 import DownloadIcon from "../../assets/downloadIcon.svg";
 
 type UploaderProps = {
+  socketId: string;
   handleUploadAudio: (formData: FormData) => void;
   resetOutput: () => void;
   isLoading: boolean;
@@ -17,6 +18,7 @@ type UploaderProps = {
 };
 
 export const AudioUploader: FC<UploaderProps> = ({
+  socketId,
   handleUploadAudio,
   isLoading,
   response,
@@ -36,6 +38,7 @@ export const AudioUploader: FC<UploaderProps> = ({
     if (!selectedFile) return;
     const formData = new FormData();
     formData.append("audio", selectedFile);
+    formData.append("socketId", socketId);
     if (response) {
       resetOutput();
       setSelectedFile(null);
