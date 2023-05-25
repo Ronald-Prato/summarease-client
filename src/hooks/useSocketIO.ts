@@ -7,7 +7,8 @@ export const useSocketIO = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect((): any => {
-    const newSocket = io(API_URL.split("/api")[0]);
+    console.log(API_URL);
+    const newSocket = io(API_URL);
     setSocket(newSocket);
 
     return () => newSocket.close();

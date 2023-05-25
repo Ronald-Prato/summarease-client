@@ -56,7 +56,7 @@ export default function Upload() {
     <div className={styles.uploadContainer}>
       <div className={styles.uploadSide}>
         {" "}
-        <h1 className={styles.logo}>SummarEase</h1>
+        <h1 className={styles.logo}>ConsizeGPT</h1>
         <AudioUploader
           handleUploadAudio={handleUploadAudio}
           isLoading={isLoading}
