@@ -40,7 +40,7 @@ export default function Upload() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${CLIENT_URL}/api/upload-audio`, {
+      const response = await fetch("/api/upload-audio", {
         method: "POST",
         body: formData,
       });
