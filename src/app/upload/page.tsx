@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./upload.module.css";
 import { AudioUploader, History, Output } from "@/components";
 import { useSocketIO } from "@/hooks/useSocketIO";
-import { CLIENT_URL } from "@/constants";
 
 type StatesType = 0 | 1;
 
