@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./upload.module.css";
 import { AudioUploader, History, Output } from "@/components";
 import { useSocketIO } from "@/hooks/useSocketIO";
+import { CLIENT_URL } from "@/constants";
 
 type StatesType = 0 | 1;
 
@@ -39,7 +40,7 @@ export default function Upload() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/upload-audio", {
+      const response = await fetch(`${CLIENT_URL}/api/upload-audio`, {
         method: "POST",
         body: formData,
       });
