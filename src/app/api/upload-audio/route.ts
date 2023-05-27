@@ -1,7 +1,7 @@
-import { API_URL, BUCKET_NAME } from "@/constants";
+import { API_URL } from "@/constants";
 import { NextResponse } from "next/server";
 
-export async function PUT(request: Request) {
+export async function POST(request: Request) {
   const formData = await request.formData();
   const uid = formData.get("uid");
   const file: any = formData.get("file");
@@ -10,9 +10,9 @@ export async function PUT(request: Request) {
 
   try {
     await fetch(
-      `${API_URL}/${BUCKET_NAME}/${uid}-separator-${documentId}-separator-${fileName}`,
+      `${API_URL}/upload-audio/${uid}-separator-${documentId}-separator-${fileName}`,
       {
-        method: "PUT",
+        method: "POST",
         body: file,
         headers: {
           "Content-Type": file.type,

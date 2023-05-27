@@ -13,6 +13,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { getRandomId } from "@/utils/getRandomId";
+import { useOggToMp3Converter } from "@/hooks/useMp3Convertion";
 
 type StatesType = 0 | 1;
 
@@ -23,6 +24,8 @@ export default function Upload() {
   const [isLoading, setIsLoading] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
   const [currentState, setCurrentState] = useState<StatesType>(0);
+
+  const { convertOggToMp3 } = useOggToMp3Converter();
 
   const resetOutput = () => {
     setResponse("");
@@ -75,6 +78,8 @@ export default function Upload() {
     setShowOutput(true);
     setIsLoading(true);
 
+    const file = formData.get("file") as File;
+
     try {
       const newDocumentId = await createSummaryInFirestate(
         formData.get("fileName") as string
@@ -85,10 +90,16 @@ export default function Upload() {
         return;
       }
 
+      if (file.type.includes("ogg")) {
+        const mp3File = await convertOggToMp3(file);
+        formData.set("file", mp3File);
+        formData.append("fileName", mp3File.name);
+      }
+
       setDocumentId(newDocumentId);
       formData.append("documentId", newDocumentId);
       const response = await fetch("/api/upload-audio", {
-        method: "PUT",
+        method: "POST",
         body: formData,
       });
       const data = await response.json();
