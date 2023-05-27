@@ -4,8 +4,6 @@ import styles from "./Output.module.css";
 import { FC, useEffect, useState } from "react";
 import { LoadingSpinner } from "../LoadingSpinner";
 import LoadingText from "../LoadingText/LoadingText";
-import { useSocketIO } from "@/hooks/useSocketIO";
-import { Socket } from "socket.io-client";
 
 type OutputProps = {
   currentStep: 0 | 1;

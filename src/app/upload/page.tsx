@@ -3,35 +3,72 @@
 import React, { useEffect, useState } from "react";
 import styles from "./upload.module.css";
 import { AudioUploader, History, Output } from "@/components";
-import { useSocketIO } from "@/hooks/useSocketIO";
+
+import { db } from "@/firebase-init";
+import {
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
+import { getRandomId } from "@/utils/getRandomId";
 
 type StatesType = 0 | 1;
 
 export default function Upload() {
-  const { socket } = useSocketIO();
-
-  const [socketId, setSocketId] = useState("");
+  const uid = "pepito123";
   const [response, setResponse] = useState("");
+  const [documentId, setDocumentId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
   const [currentState, setCurrentState] = useState<StatesType>(0);
 
-  useEffect(() => {
-    if (socket) {
-      socket.on("socket-id", (newSocketId) => {
-        console.log("Your socket id is ", newSocketId);
-        setSocketId(newSocketId);
-      });
-
-      socket.on("status-changed", (newStatus: StatesType) => {
-        setCurrentState(newStatus);
-      });
-    }
-  }, [socket]);
-
   const resetOutput = () => {
     setResponse("");
     setCurrentState(0);
+  };
+
+  useEffect(() => {
+    if (!documentId) return;
+
+    const unsub = onSnapshot(
+      doc(db, "users", uid, "summaries", documentId),
+      (doc) => {
+        const data = doc.data();
+        console.log("Data in subscription", data);
+        if (data?.summary) {
+          setResponse(data.summary);
+          setIsLoading(false);
+        }
+      }
+    );
+
+    return () => {
+      unsub();
+    };
+  }, [documentId]);
+
+  const createSummaryInFirestate = async (audioName: string) => {
+    const id = getRandomId(20);
+    const uid = "pepito123";
+    const data = {
+      uid: "pepito123",
+      audioName,
+      summary: "",
+      transcription: "",
+      createdAt: new Date(),
+      finishedAt: null,
+    };
+
+    try {
+      await setDoc(doc(db, "users", uid, "summaries", id), data);
+      console.log("Summary written in db");
+      return id;
+    } catch (e) {
+      console.error("Error adding document: ", e);
+      return null;
+    }
   };
 
   const handleUploadAudio = async (formData: FormData) => {
@@ -39,12 +76,23 @@ export default function Upload() {
     setIsLoading(true);
 
     try {
+      const newDocumentId = await createSummaryInFirestate(
+        formData.get("fileName") as string
+      );
+
+      if (!newDocumentId) {
+        setIsLoading(false);
+        return;
+      }
+
+      setDocumentId(newDocumentId);
+      formData.append("documentId", newDocumentId);
       const response = await fetch("/api/upload-audio", {
-        method: "POST",
+        method: "PUT",
         body: formData,
       });
       const data = await response.json();
-      setResponse(data.summary);
+      return data === "ok";
     } catch (err) {
       console.log("Hubo un error D: ", err);
     }
@@ -60,7 +108,6 @@ export default function Upload() {
         <AudioUploader
           handleUploadAudio={handleUploadAudio}
           isLoading={isLoading}
-          socketId={socketId}
           resetOutput={resetOutput}
           response={response}
         />
@@ -70,9 +117,9 @@ export default function Upload() {
 
       {showOutput ? (
         <Output
-          currentStep={currentState}
           response={response}
           isLoading={isLoading}
+          currentStep={currentState}
         />
       ) : (
         <div className={styles.outputContainer}>
