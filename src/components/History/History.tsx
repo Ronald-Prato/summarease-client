@@ -4,8 +4,8 @@ export const History = () => {
   return (
     <>
       <section className={styles.historyContainer}>
-        <h2>History</h2>
-        <div className={styles.historyBox}>Feature coming soon</div>
+        <h2>Historial</h2>
+        <div className={styles.historyBox}>Disponible proximamente</div>
       </section>
     </>
   );

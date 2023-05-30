@@ -13,7 +13,6 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { getRandomId } from "@/utils/getRandomId";
-import { useOggToMp3Converter } from "@/hooks/useMp3Convertion";
 
 type StatesType = 0 | 1;
 
@@ -24,8 +23,6 @@ export default function Upload() {
   const [isLoading, setIsLoading] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
   const [currentState, setCurrentState] = useState<StatesType>(0);
-
-  const { convertOggToMp3 } = useOggToMp3Converter();
 
   const resetOutput = () => {
     setResponse("");
@@ -90,12 +87,6 @@ export default function Upload() {
         return;
       }
 
-      if (file.type.includes("ogg")) {
-        const mp3File = await convertOggToMp3(file);
-        formData.set("file", mp3File);
-        formData.append("fileName", mp3File.name);
-      }
-
       setDocumentId(newDocumentId);
       formData.append("documentId", newDocumentId);
       const response = await fetch("/api/upload-audio", {
@@ -127,15 +118,11 @@ export default function Upload() {
       </div>
 
       {showOutput ? (
-        <Output
-          response={response}
-          isLoading={isLoading}
-          currentStep={currentState}
-        />
+        <Output response={response} isLoading={isLoading} />
       ) : (
         <div className={styles.outputContainer}>
           <div className={styles.output}>
-            Upload an audio to get your summary.
+            Sube un audio para obtener el resumen.
           </div>
         </div>
       )}

@@ -1,9 +1,9 @@
 .fadeInOut {
   opacity: 0;
-  transform: translateY(-100%);
-  animation: fadeInOut 500ms ease-in-out forwards;
-  color: var(--dark);
-  margin-top: 10px;
+  transform: translateY(100%);
+  animation: fadeInOut 4s ease-in-out forwards;
+  color: var(--gray-light);
+  margin-top: 40px;
 }
 
 @keyframes fadeInOut {
@@ -11,8 +11,16 @@
     opacity: 0;
     transform: translateY(100%);
   }
-  100% {
+  30% {
     opacity: 1;
     transform: translateY(0);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }

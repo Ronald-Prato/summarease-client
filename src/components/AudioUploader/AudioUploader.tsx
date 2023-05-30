@@ -98,8 +98,8 @@ export const AudioUploader: FC<UploaderProps> = ({
               alt="Download Icon"
               className={styles.icon}
             />
-            <h3>Upload your Audio</h3>
-            <h5>(Max 10 MB)</h5>
+            <h3>Sube tu Audio</h3>
+            <h5>(Máx 10 MB)</h5>
             <input
               id="file-upload-input"
               type="file"
@@ -113,13 +113,13 @@ export const AudioUploader: FC<UploaderProps> = ({
           <div className={styles.uploaderContainer}>
             <Image src={CheckIcon} alt="Check icon" className={styles.icon} />
             <p>{filename}</p>
-            <h3>Uploaded</h3>
+            <h3>¡Archivo Subido!</h3>
             <Button onClick={handleUpload} disabled={isLoading}>
               {!isLoading ? (
                 response ? (
-                  "Make new summary"
+                  "Crear nuevo resumen"
                 ) : (
-                  "Summarize"
+                  "Generar Resumen"
                 )
               ) : (
                 <LoadingSpinner color="white" />

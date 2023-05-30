@@ -4,8 +4,8 @@ export const Header = () => {
   return (
     <div>
       <nav className={styles.headerContainer}>
-        <h1 className={styles.logo}>SummarEase</h1>
-        <h2 className={styles.login}>Login</h2>
+        <h1 className={styles.logo}>ConsizeGPT</h1>
+        <h2 className={styles.login}></h2>
       </nav>
     </div>
   );

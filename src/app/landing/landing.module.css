@@ -44,6 +44,10 @@
   text-decoration: none;
 }
 
+.google {
+  margin-right: 10px;
+}
+
 @media (max-width: 726px) {
   .landingContainer {
     margin-top: 60px;
