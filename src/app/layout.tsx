@@ -6,8 +6,8 @@ import Providers from "./Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SummarEase | AI Summaries",
-  description: "Summaries from Audio Files",
+  title: "Consize GPT | Resúmenes de Audio con IA",
+  description: "Haz resúmenes de tus audios en unos segundos",
   icons: "/favicon.ico",
 };
 
