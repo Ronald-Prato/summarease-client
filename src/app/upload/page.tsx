@@ -69,15 +69,11 @@ export default function Upload() {
       </div>
 
       {showOutput ? (
-        <Output
-          currentStep={currentState}
-          response={response}
-          isLoading={isLoading}
-        />
+        <Output response={response} isLoading={isLoading} />
       ) : (
         <div className={styles.outputContainer}>
           <div className={styles.output}>
-            Upload an audio to get your summary.
+            Sube un audio para obtener el resumen.
           </div>
         </div>
       )}

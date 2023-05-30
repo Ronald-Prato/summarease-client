@@ -6,6 +6,7 @@ import { Button } from "@/components";
 
 import styles from "./landing.module.css";
 import Astro from "../../assets/astronaut1.png";
+import GoogleIcon from "../../assets/googleIcon.svg";
 
 // exportar como default
 export default function Landing() {
@@ -22,7 +23,15 @@ export default function Landing() {
           <b> links de referencia</b> usando el poder de la <b>IA</b>.
         </p>
         <Link href="/upload" className={styles.link}>
-          <Button>COMIENZA</Button>
+          <Button>
+            <Image
+              className={styles.google}
+              src={GoogleIcon}
+              alt="logo de google"
+              width={25}
+            />{" "}
+            Ingresa
+          </Button>
         </Link>
       </div>
     </div>
