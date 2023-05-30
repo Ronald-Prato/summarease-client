@@ -5,6 +5,7 @@ export const LoadingText: FC = () => {
   const texts = [
     "Analizando Audio",
     "Transcribiendo Audio",
+    "Borrando Audio",
     "Generando Resumen",
     "Creando Bullet Points",
     "Buscando Links de Referencia",
