@@ -8,6 +8,7 @@ import CheckIcon from "../../assets/checkIcon.svg";
 import { NO_FILE_SELECTED_COPY } from "@/constants";
 import { Button, LoadingSpinner } from "@/components";
 import DownloadIcon from "../../assets/downloadIcon.svg";
+import { RootState, useAppSelector } from "@/store";
 
 type UploaderProps = {
   handleUploadAudio: (formData: FormData) => void;
@@ -22,6 +23,7 @@ export const AudioUploader: FC<UploaderProps> = ({
   response,
   resetOutput,
 }) => {
+  const uid = useAppSelector((state: RootState) => state.user.uid);
   const [isDragging, setIsDragging] = useState(false);
   const [filename, setFilename] = useState(NO_FILE_SELECTED_COPY);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -35,7 +37,7 @@ export const AudioUploader: FC<UploaderProps> = ({
   function handleUpload() {
     if (!selectedFile) return;
     const formData = new FormData();
-    formData.append("uid", "pepito123");
+    formData.append("uid", uid);
     formData.append("file", selectedFile);
     formData.append("fileName", selectedFile.name);
 

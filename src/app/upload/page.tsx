@@ -1,32 +1,26 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import styles from "./upload.module.css";
-import { AudioUploader, History, Output } from "@/components";
+import { setDoc, doc, onSnapshot } from "firebase/firestore";
 
 import { db } from "@/firebase-init";
-import {
-  collection,
-  addDoc,
-  setDoc,
-  doc,
-  onSnapshot,
-} from "firebase/firestore";
 import { getRandomId } from "@/utils/getRandomId";
+import { RootState, useAppSelector } from "@/store";
+import { usePersistence } from "@/hooks/usePersistence";
+import { AudioUploader, History, Output } from "@/components";
 
-type StatesType = 0 | 1;
+import styles from "./upload.module.css";
 
 export default function Upload() {
-  const uid = "pepito123";
   const [response, setResponse] = useState("");
   const [documentId, setDocumentId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showOutput, setShowOutput] = useState(false);
-  const [currentState, setCurrentState] = useState<StatesType>(0);
+  const { isSingedIn } = usePersistence({ isNotLoggedPath: "/" });
+  const uid = useAppSelector((state: RootState) => state.user.uid);
 
   const resetOutput = () => {
     setResponse("");
-    setCurrentState(0);
   };
 
   useEffect(() => {
@@ -51,9 +45,8 @@ export default function Upload() {
 
   const createSummaryInFirestate = async (audioName: string) => {
     const id = getRandomId(20);
-    const uid = "pepito123";
     const data = {
-      uid: "pepito123",
+      uid,
       audioName,
       summary: "",
       transcription: "",
@@ -74,8 +67,6 @@ export default function Upload() {
   const handleUploadAudio = async (formData: FormData) => {
     setShowOutput(true);
     setIsLoading(true);
-
-    const file = formData.get("file") as File;
 
     try {
       const newDocumentId = await createSummaryInFirestate(
@@ -101,6 +92,10 @@ export default function Upload() {
 
     setIsLoading(false);
   };
+
+  if (!isSingedIn) {
+    return <div>Validando Sesión...</div>;
+  }
 
   return (
     <div className={styles.uploadContainer}>

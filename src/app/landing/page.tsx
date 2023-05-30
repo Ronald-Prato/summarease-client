@@ -1,15 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components";
 
 import styles from "./landing.module.css";
 import Astro from "../../assets/astronaut1.png";
 import GoogleIcon from "../../assets/googleIcon.svg";
+import { useAuth } from "@/hooks/useAuth";
 
 // exportar como default
 export default function Landing() {
+  const { handleGoogleSignup } = useAuth();
+
   return (
     <div className={styles.landingContainer}>
       <div className={styles.imageSide}>
@@ -22,17 +24,15 @@ export default function Landing() {
           <strong>resúmenes</strong> de tus <b>audios</b>,
           <b> links de referencia</b> usando el poder de la <b>IA</b>.
         </p>
-        <Link href="/upload" className={styles.link}>
-          <Button>
-            <Image
-              className={styles.google}
-              src={GoogleIcon}
-              alt="logo de google"
-              width={25}
-            />{" "}
-            Ingresa
-          </Button>
-        </Link>
+        <Button onClick={handleGoogleSignup}>
+          <Image
+            className={styles.google}
+            src={GoogleIcon}
+            alt="logo de google"
+            width={25}
+          />{" "}
+          Ingresa
+        </Button>
       </div>
     </div>
   );
