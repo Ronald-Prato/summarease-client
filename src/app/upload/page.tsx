@@ -88,6 +88,7 @@ export default function Upload() {
       return data === "ok";
     } catch (err) {
       console.log("Hubo un error D: ", err);
+      setIsLoading(false);
     }
   };
 
