@@ -89,8 +89,6 @@ export default function Upload() {
     } catch (err) {
       console.log("Hubo un error D: ", err);
     }
-
-    setIsLoading(false);
   };
 
   if (!isSingedIn) {
