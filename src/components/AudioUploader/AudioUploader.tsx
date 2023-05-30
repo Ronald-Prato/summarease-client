@@ -88,9 +88,9 @@ export const AudioUploader: FC<UploaderProps> = ({
         ${!selectedFile ? styles.withoutButton : ""}
         `} // Add class based on dragging state
         onDrop={handleDrop}
+        onDragEnd={handleDragEnd}
         onDragOver={handleDragOver}
         onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
         onDragLeave={handleDragLeave}
       >
         {!selectedFile ? (
@@ -105,7 +105,7 @@ export const AudioUploader: FC<UploaderProps> = ({
             <input
               id="file-upload-input"
               type="file"
-              accept=".mp3,.wav"
+              accept=".mp3,.wav,.ogg,.m4a"
               onChange={handleFileSelect}
               className={styles.hidden}
             />
