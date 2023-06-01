@@ -1,8 +1,12 @@
 import { Header } from "@/components";
 import styles from "./landing.module.css";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Consize GPT | Resumenes de audio con IA",
+  openGraph: {
+    images: "/assets/astronaut1.png",
+  },
   description: "Haz resúmenes de tus audios en unos segundos",
   keywords: "summary, chatgpt, gpt, gpt3, ai",
   robots: {
