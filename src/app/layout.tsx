@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Consize GPT | Resumenes de audio con IA",
   openGraph: {
-    images: "https://hackmd.io/_uploads/SJdFHPILn.png",
+    images: "https://hackmd.io/_uploads/SJBRUPUI2.png",
   },
   description: "Haz resúmenes de tus audios en unos segundos",
   keywords: "summary, chatgpt, gpt, gpt3, ai",
