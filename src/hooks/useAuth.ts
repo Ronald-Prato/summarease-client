@@ -62,7 +62,7 @@ export const useAuth = () => {
   const logout = () => {
     auth.signOut();
     document.cookie = `uid=null; path=/;`;
-    router.replace("/login");
+    router.replace("/");
   };
 
   return { handleGoogleSignup, isLoading, logout };

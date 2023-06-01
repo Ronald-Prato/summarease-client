@@ -10,6 +10,7 @@ import { usePersistence } from "@/hooks/usePersistence";
 import { AudioUploader, History, Output } from "@/components";
 
 import styles from "./upload.module.css";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Upload() {
   const [response, setResponse] = useState("");
@@ -18,6 +19,8 @@ export default function Upload() {
   const [showOutput, setShowOutput] = useState(false);
   const { isSingedIn } = usePersistence({ isNotLoggedPath: "/" });
   const uid = useAppSelector((state: RootState) => state.user.uid);
+
+  const { logout } = useAuth();
 
   const resetOutput = () => {
     setResponse("");
@@ -100,7 +103,10 @@ export default function Upload() {
     <div className={styles.uploadContainer}>
       <div className={styles.uploadSide}>
         {" "}
-        <h1 className={styles.logo}>ConsizeGPT</h1>
+        <div className={styles.textArea}>
+          <h1 className={styles.logo}>ConsizeGPT</h1>
+          <h2 onClick={logout}>Cerrar sesión</h2>
+        </div>
         <AudioUploader
           handleUploadAudio={handleUploadAudio}
           isLoading={isLoading}
