@@ -21,8 +21,8 @@ export default function Landing() {
         <p>
           {" "}
           Obtén la <b> transcripción </b> con <b>puntos clave</b> y crea{" "}
-          <strong>resúmenes</strong> de tus <b>audios</b>,
-          <b> links de referencia</b> usando el poder de la <b>IA</b>.
+          <strong>resúmenes</strong> de tus <b>audios</b>, usando el poder de la{" "}
+          <b>IA</b>.
         </p>
         <Button onClick={handleGoogleSignup}>
           <Image

@@ -1,6 +1,6 @@
-# SummarEase Project!
+# Consize GPT Project!
 
-![SummarEase](https://hackmd.io/_uploads/ryrL_4642.png)
+![ConsizeGPT](https://hackmd.io/_uploads/ryrL_4642.png)
 
 **Make Summaries from audios and get important data about it**
 
