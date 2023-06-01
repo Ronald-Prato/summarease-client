@@ -6,7 +6,7 @@ import Providers from "./Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Consize GPT | Resumenes de audio con IA",
+  title: "Consize GPT | Resúmenes de audio con IA",
   openGraph: {
     images: "https://hackmd.io/_uploads/SJBRUPUI2.png",
   },
