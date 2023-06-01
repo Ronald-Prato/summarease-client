@@ -7,10 +7,12 @@ import styles from "./landing.module.css";
 import Astro from "../../assets/astronaut1.png";
 import GoogleIcon from "../../assets/googleIcon.svg";
 import { useAuth } from "@/hooks/useAuth";
+import { usePersistence } from "@/hooks/usePersistence";
 
 // exportar como default
 export default function Landing() {
   const { handleGoogleSignup } = useAuth();
+  usePersistence({ isLoggedPath: "/upload" });
 
   return (
     <div className={styles.landingContainer}>
